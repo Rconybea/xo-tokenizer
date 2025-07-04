@@ -9,10 +9,10 @@ standalone build
            |                                                  +----------------------+
            +------------------------------------------------->| .build/docs/Doxyfile |
            |                                                  +----------------------+
-           |                                                     |
+           |                                                     ^
+           |                                 (cmake              |
            |                                        /------------/
            |                                        |
-           |                                        v
            |     +---------------------------------------+    +-----------------+
            +---->| doxygen                               |--->| .build/docs/dox |
            |     |   $PREFIX/share/xo-macros/Doxyfile.in |    |   +- html/      |
@@ -37,3 +37,5 @@ files
    CMakeLists.txt    build entry point
    conf.py           sphinx config
    _static           static files for sphinx
+
+   index.rst         toplevel sphinx document; entry point
