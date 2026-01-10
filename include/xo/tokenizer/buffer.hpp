@@ -101,7 +101,8 @@ namespace xo {
                 @param buf_z    Buffer size.  allocate storage (owned by this buffer) if >0.
                 @param align_z  Align to this value,  e.g. 8 to align storage on an 8-byte boundary
             **/
-            buffer(size_type buf_z, size_type align_z = sizeof(char))
+            buffer(size_type buf_z,
+                   size_type align_z = sizeof(char))
                 : is_owner_{true},
                   buf_{buf_z ? (new (std::align_val_t(align_z)) CharT [buf_z]) : nullptr},
                   buf_z_{buf_z},
@@ -134,9 +135,11 @@ namespace xo {
             CharT const & operator[](size_type i) const { return buf_[i]; }
 
             /** @brief return span for current buffer contents **/
-            span_type contents() const { return span_type(buf_ + lo_pos_, buf_ + hi_pos_); }
+            span_type contents() const { return span_type(buf_ + lo_pos_,
+                                                          buf_ + hi_pos_); }
             /** @brief returns span for writable buffer contents (unused prefix following produce position **/
-            span_type avail() const { return span_type(buf_ + hi_pos_, buf_ + buf_z_); }
+            span_type avail() const { return span_type(buf_ + hi_pos_,
+                                                       buf_ + buf_z_); }
 
             /** @brief @c true iff buffer is empty **/
             bool empty() const { return lo_pos_ == hi_pos_; }
@@ -315,7 +318,8 @@ namespace xo {
         /** @brief Overload for @c swap,  so that @c buffer<CharT> swappable **/
         template <typename CharT>
         inline void
-        swap(buffer<CharT> & lhs, buffer<CharT> & rhs) {
+        swap(buffer<CharT> & lhs,
+             buffer<CharT> & rhs) {
             lhs.swap(rhs);
         }
     } /*namespace scm*/
